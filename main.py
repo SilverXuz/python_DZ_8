@@ -24,6 +24,9 @@ def write_to_file(contact: dict, filename='directory.csv'):
 
 
 def overwrite_file(data: list, filename='directory.csv'):
+    """
+    Функция которая  объединяет два списка после удаления. До строки удаления и после. и записывает в справочник.
+    """
     with open(filename, 'w', newline='', encoding='utf-8') as csvfile:
         title = ['surname', 'name', 'personal_number', 'work_number', 'city', 'comment']
         writer = csv.DictWriter(csvfile, fieldnames=title)
@@ -82,7 +85,7 @@ def print_contacts_by_index(indexes: list):
 
 def edit_contact(edit_id: str):
     """
-    Функция будет вносить измнения в контакт по индексу
+    Функция будет вносить измнения в контакт по индексу. Через удаление и перезапись.
     """
     edit_id = int(edit_id)
     data = get_data_from_file()
@@ -101,7 +104,7 @@ def delete_contact(del_id: str):
     data = get_data_from_file()
     data.pop(del_id)
 
-
+    overwrite_file(data)
     print('Контакт удален из справочника! *(индексы обновлены)*')
 
 
