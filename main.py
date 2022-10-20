@@ -18,8 +18,9 @@ def write_to_directory(contact: dict, filename='directory.csv'):
     """
     with open(filename, 'a', newline='', encoding='utf-8') as csvfile:
         title = ['surname', 'name', 'personal_number', 'work_number', 'city', 'comment']
-        writer = csv.DictWriter(csvfile, fieldnames=title, delimiter=',')
+        writer = csv.DictWriter(csvfile, fieldnames=title)
         writer.writerow(contact)
+
 
 def write_contact(value: str) -> dict:
     """
@@ -37,7 +38,7 @@ def write_contact(value: str) -> dict:
     return result
 
 
-def print_contacts(data: list) -> 'print':
+def print_contacts(data) -> 'print':
     """
     Функция будет выводить все найденные контакты. На вход принимает содержимое всего файла *.csv
     """
@@ -45,6 +46,17 @@ def print_contacts(data: list) -> 'print':
         if i == 0:
             print('ID', 'фамилия', 'имя', 'телефон личный', 'телефон рабочий', 'город', 'примечание', sep='\t')
         print(i, *row, sep='\t')
+
+
+def print_find_contacts(data, index) -> 'print':
+    """
+    Функция будет выводить все строки с найденными совпадениями
+    """
+    for i, row in enumerate(data):
+        if i == 0:
+            print('ID', 'фамилия', 'имя', 'телефон личный', 'телефон рабочий', 'город', 'примечание', sep='\t')
+        elif i == index:
+            print(i, *row, sep='\t')
 
 
 def edit_contact(value: str) -> dict:
@@ -66,7 +78,8 @@ def get_data_from_file(filename='directory.csv'):
     """
     with open(filename, 'r') as csvfile:
         reader = csv.reader(csvfile)
-    return reader
+        x = [row for row in reader]
+    return x
 
 
 def text_input(phrase: str) -> str:
@@ -83,7 +96,7 @@ def text_input(phrase: str) -> str:
 #     """
 #     pass
 
-def request_search(value: str, filename='directory.csv') -> 'индекс записи':
+def request_search(value: str, filename='directory.csv') -> int:
     """
     Функция будет осуществлять поиск в базе по запросу. И возвращать индекс строки.
     """
@@ -139,11 +152,7 @@ def main():
             print('НАЙТИ КОНТАКТ')
             result = text_input(f'{search_text}найти:\n')  # обращение к поиску
             found_contact = request_search(result)
-            if found_contact > 0:
-                print(found_contact)
-            # else:
-                # write_to_log(data=[result, str(error1)])
-                # print(error1)
+            print_find_contacts(str(get_data_from_file), found_contact)
             text_input(next_action)
         elif gen_action == '5':
             print('ВЕСЬ СПРАВОЧНИК')
