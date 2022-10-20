@@ -87,11 +87,11 @@ def request_search(value: str, filename='directory.csv') -> 'индекс зап
         reader = csv.reader(csvfile)
         # print('фамилия', 'имя', 'телефон личный', 'телефон рабочий', 'город', 'примечание', sep='\t')
         for i, row in enumerate(reader):
-            # row = привести к нижнему регистру
-            if value.lower() in row:
-                return i
-            else:
-                return -1
+            if i == 0:
+                continue
+            for col in row:
+                if value.lower() in col.lower():
+                    return i
 
 
 def select_action(value: str) -> int:
@@ -136,11 +136,12 @@ def main():
             print('НАЙТИ КОНТАКТ')
             result = text_input(f'{search_text}найти:\n')  # обращение к поиску
             found_contact = request_search(result)
+            print(found_contact)
             if found_contact > 0:
-                print(found_contact)
-            else:
-                write_to_log(data=[result, str(error1)])
-                print(error1)
+            #     print(found_contact)
+            # else:
+                # write_to_log(data=[result, str(error1)])
+                # print(error1)
             text_input(next_action)
         elif gen_action == '5':
             print('ВЕСЬ СПРАВОЧНИК')
