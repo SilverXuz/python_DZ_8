@@ -40,7 +40,7 @@ def write_contact(value: str) -> dict:
 
 def print_contacts(data) -> 'print':
     """
-    Функция будет выводить все найденные контакты. На вход принимает содержимое всего файла *.csv
+    Функция будет выводить все найденные контакты в файле. На вход принимает содержимое всего файла *.csv
     """
     for i, row in enumerate(data):
         if i == 0:
@@ -50,7 +50,7 @@ def print_contacts(data) -> 'print':
 
 def print_find_contacts(data, index) -> 'print':
     """
-    Функция будет выводить все строки с найденными совпадениями
+    Функция будет выводить все строки по индексу с найденными совпадениями поиска
     """
     for i, row in enumerate(data):
         if i == 0:
@@ -152,6 +152,7 @@ def main():
             print('НАЙТИ КОНТАКТ')
             result = text_input(f'{search_text}найти:\n')  # обращение к поиску
             found_contact = request_search(result)
+
             print_find_contacts(str(get_data_from_file), found_contact)
             text_input(next_action)
         elif gen_action == '5':
