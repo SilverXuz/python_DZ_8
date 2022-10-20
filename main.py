@@ -90,7 +90,7 @@ def edit_contact(edit_id: str):
     overwrite_file(data)
     new_value = write_contact('Внесите изменения -> ')
     write_to_file(new_value)
-    print('Контакт перезаписан в справочнике! *(индексы обновлены)*')
+    print('\nКонтакт перезаписан в справочнике! *(индексы обновлены)*')
 
 
 def delete_contact(del_id: str):
