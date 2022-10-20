@@ -16,11 +16,9 @@ def write_to_directory(contact: dict, filename='directory.csv'):
     """
     Функция которая производит запись в справочник.
     """
-    with open(filename, 'a', newline='') as csvfile:
+    with open(filename, 'a', newline='', encoding='utf-8') as csvfile:
         title = ['surname', 'name', 'personal_number', 'work_number', 'city', 'comment']
         writer = csv.DictWriter(csvfile, fieldnames=title, delimiter=',')
-        # for line in contact:
-        #     writer.writerow(line)
         writer.writerow(contact)
 
 def write_contact(value: str) -> dict:
@@ -43,10 +41,9 @@ def print_contacts(data: list) -> 'print':
     """
     Функция будет выводить все найденные контакты. На вход принимает содержимое всего файла *.csv
     """
-    print('ID', 'фамилия', 'имя', 'телефон личный', 'телефон рабочий', 'город', 'примечание', sep='\t')
     for i, row in enumerate(data):
         if i == 0:
-            continue
+            print('ID', 'фамилия', 'имя', 'телефон личный', 'телефон рабочий', 'город', 'примечание', sep='\t')
         print(i, *row, sep='\t')
 
 
@@ -69,11 +66,6 @@ def get_data_from_file(filename='directory.csv'):
     """
     with open(filename, 'r') as csvfile:
         reader = csv.reader(csvfile)
-        # print('фамилия', 'имя', 'телефон личный', 'телефон рабочий', 'город', 'примечание', sep='\t')
-        # for i, row in enumerate(reader):
-            # if i == 0:
-            #     continue
-            # result = row
     return reader
 
 
@@ -97,7 +89,6 @@ def request_search(value: str, filename='directory.csv') -> 'индекс зап
     """
     with open(filename) as csvfile:
         reader = csv.reader(csvfile)
-        # print('фамилия', 'имя', 'телефон личный', 'телефон рабочий', 'город', 'примечание', sep='\t')
         for i, row in enumerate(reader):
             if i == 0:
                 continue
