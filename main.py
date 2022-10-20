@@ -13,6 +13,9 @@ def write_to_log(Data: str, filename='error_logfile.txt'):
 
 
 def write_to_directory(contact: dict, filename='directory.csv'):
+    """
+    Функция которая производит запись в справочник.
+    """
     with open(filename, 'a', newline='') as csvfile:
         title = ['surname', 'name', 'personal_number', 'work_number', 'city', 'comment']
         writer = csv.DictWriter(csvfile, fieldnames=title, delimiter=',')
@@ -21,6 +24,10 @@ def write_to_directory(contact: dict, filename='directory.csv'):
         writer.writerow(contact)
 
 def write_contact(value: str) -> dict:
+    """
+    Функция которая записывает данные от пользователя в формате.
+    ('surname', 'name', 'personal_number', 'work_number', 'city', 'comment')
+    """
     d = ('фамилию', 'имя', 'телефон личный', 'телефон рабочий', 'город', 'примечание')
     e = ('surname', 'name', 'personal_number', 'work_number', 'city', 'comment')
     result = {}
@@ -32,11 +39,11 @@ def write_contact(value: str) -> dict:
     return result
 
 
-def print_contacts(data):
+def print_contacts(data: 'csv') -> 'print':
     """
-    Функция будет выводить найденный контакт по индексу
+    Функция будет выводить все найденные контакты. На вход принимает содержимое всего файла *.csv
     """
-    print('фамилия', 'имя', 'телефон личный', 'телефон рабочий', 'город', 'примечание', sep='\t')
+    print('ID', 'фамилия', 'имя', 'телефон личный', 'телефон рабочий', 'город', 'примечание', sep='\t')
     for i, row in enumerate(data):
         if i == 0:
             continue
@@ -56,17 +63,18 @@ def delete_contact(value: str) -> dict:
     pass
 
 
-def show_all(filename='directory.csv'):
+def get_data_from_file(filename='directory.csv'):
     """
-    Функция которая выводит весь справочник
+    Функция которая считывает файл
     """
-    with open(filename) as csvfile:
+    with open(filename, 'r') as csvfile:
         reader = csv.reader(csvfile)
-        print('фамилия', 'имя', 'телефон личный', 'телефон рабочий', 'город', 'примечание', sep='\t')
-        for i, row in enumerate(reader):
-            if i == 0:
-                continue
-    return reader
+        # print('фамилия', 'имя', 'телефон личный', 'телефон рабочий', 'город', 'примечание', sep='\t')
+        # for i, row in enumerate(reader):
+            # if i == 0:
+            #     continue
+            # result = row
+        return reader
 
 
 def text_input(phrase: str) -> str:
@@ -140,16 +148,16 @@ def main():
             print('НАЙТИ КОНТАКТ')
             result = text_input(f'{search_text}найти:\n')  # обращение к поиску
             found_contact = request_search(result)
-            print(found_contact)
             if found_contact > 0:
-            #     print(found_contact)
+                print(found_contact)
             # else:
                 # write_to_log(data=[result, str(error1)])
                 # print(error1)
             text_input(next_action)
         elif gen_action == '5':
             print('ВЕСЬ СПРАВОЧНИК')
-            result = show_all()
+            data_from_file = get_data_from_file()
+            print_contacts(data_from_file)
             text_input(next_action)
         elif gen_action == '6':
             start = False
