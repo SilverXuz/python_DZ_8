@@ -119,7 +119,7 @@ def text_input(phrase: str) -> str:
 
 def search(value: str) -> list:
     """
-    Функция возвращает список индексов строк, в которых найдена строка value
+    Функция возвращает список индексов строк, в которых найдена строка value.
     """
     result = []
     data = get_data_from_file()
