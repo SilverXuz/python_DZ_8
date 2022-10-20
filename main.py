@@ -32,12 +32,16 @@ def write_contact(value: str) -> dict:
     return result
 
 
-def print_contacts(data) -> dict:
+def print_contacts(data):
     """
     Функция будет выводить найденный контакт по индексу
     """
-    for i in enumerate(data):
+    print('фамилия', 'имя', 'телефон личный', 'телефон рабочий', 'город', 'примечание', sep='\t')
+    for i, row in enumerate(data):
+        if i == 0:
+            continue
         print(i, *row, sep='\t')
+
 
 def edit_contact(value: str) -> dict:
     """
