@@ -39,7 +39,7 @@ def write_contact(value: str) -> dict:
     return result
 
 
-def print_contacts(data: 'csv') -> 'print':
+def print_contacts(data: list) -> 'print':
     """
     Функция будет выводить все найденные контакты. На вход принимает содержимое всего файла *.csv
     """
@@ -74,7 +74,7 @@ def get_data_from_file(filename='directory.csv'):
             # if i == 0:
             #     continue
             # result = row
-        return reader
+    return reader
 
 
 def text_input(phrase: str) -> str:
