@@ -168,6 +168,7 @@ def main():
                 edit_id = input("Введите ID контакта, чтобы его изменить:\n")
                 edit_contact(edit_id)
             else:
+                write_to_log(f'Поиск: {result}, результат: {error1}')
                 print(error1)
             text_input(next_action)
         elif gen_action == '3':
@@ -179,6 +180,7 @@ def main():
                 del_id = input("Введите ID контакта, чтобы его удалить:\n")
                 delete_contact(del_id)
             else:
+                write_to_log(f'Поиск: {result}, результат: {error1}')
                 print(error1)
             text_input(next_action)
         elif gen_action == '4':
@@ -188,7 +190,7 @@ def main():
             if len(contact_indexes) > 0:
                 print_contacts_by_index(contact_indexes)
             else:
-                # write_to_log(data=[result_input, str(error1)])
+                write_to_log(f'Поиск: {result_input}, результат: {error1}')
                 print(error1)
             text_input(next_action)
         elif gen_action == '5':
