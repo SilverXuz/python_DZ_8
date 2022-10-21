@@ -185,8 +185,8 @@ def main():
             text_input(next_action)
         elif gen_action == '4':
             print('НАЙТИ КОНТАКТ')
-            result_input = text_input(f'{search_text}найти:\n')  # обращение к поиску
-            contact_indexes = search(result_input)
+            result_input = text_input(f'{search_text}найти:\n')
+            contact_indexes = search(result_input) # обращение к поиску
             if len(contact_indexes) > 0:
                 print_contacts_by_index(contact_indexes)
             else:
