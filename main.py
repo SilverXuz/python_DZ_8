@@ -25,7 +25,7 @@ def write_to_file(contact: dict, filename='directory.csv'):
 
 def overwrite_file(data: list, filename='directory.csv'):
     """
-    Функция которая  объединяет два списка после удаления. До строки удаления и после. и записывает в справочник.
+    Функция которая  объединяет два списка после удаления. До строки удаления и после неё. И записывает в справочник.
     """
     with open(filename, 'w', newline='', encoding='utf-8') as csvfile:
         title = ['surname', 'name', 'personal_number', 'work_number', 'city', 'comment']
